@@ -1,0 +1,7 @@
+{
+  "name": "TI_NET_2024_DemoIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
