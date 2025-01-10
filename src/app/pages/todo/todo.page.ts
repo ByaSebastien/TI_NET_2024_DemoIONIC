@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {
-  ActionSheetController,
+  ActionSheetController, AlertController,
   IonButton,
   IonContent,
   IonHeader,
@@ -25,6 +25,7 @@ import {add, checkmark, trash, closeOutline} from "ionicons/icons";
 export class TodoPage implements OnInit {
 
   private readonly _asController: ActionSheetController = inject(ActionSheetController);
+  private readonly _alertController: AlertController = inject(AlertController);
 
   taskName: string = '';
   tasks: TaskModel[] = [];
@@ -50,8 +51,32 @@ export class TodoPage implements OnInit {
       buttons: [
         {
           text: task.checked ? 'Invalider' : 'Valider',
-          icon: checkmark,
-          handler: () => task.checked = !task.checked,
+          icon: task.checked ? closeOutline : checkmark,
+          handler: () => {
+            task.checked = !task.checked;
+            as.dismiss();
+          },
+        },
+        {
+          text: 'Supprimer',
+          icon: trash,
+          handler: async () => {
+            const alert = await this._alertController.create({
+              header: 'Confirmation',
+              buttons: [
+                {
+                  text: 'Annuler',
+                },
+                {
+                  text: 'Confirmer',
+                  handler: () => {
+                    this.tasks = this.tasks.filter((t) => t !== task);
+                  },
+                },
+              ],
+            });
+            await alert.present();
+          }
         },
         {
           text: 'Annuler',
