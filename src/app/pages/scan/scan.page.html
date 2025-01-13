@@ -8,4 +8,9 @@
   <ion-button (click)="scan()">
     <ion-icon name="scan"></ion-icon>
   </ion-button>
+  @if(currentProduct){
+    <ion-item>
+      <h1>{{currentProduct.product.generic_name_fr}}</h1>
+    </ion-item>
+  }
 </ion-content>
