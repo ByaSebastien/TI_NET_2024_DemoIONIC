@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs} from '@ionic/angular/standalone';
-import {home, cart, bookOutline} from "ionicons/icons"
+import {home, scan, bookOutline} from "ionicons/icons"
 import {addIcons} from "ionicons";
 import {RouterLink} from "@angular/router";
 
@@ -12,6 +12,6 @@ import {RouterLink} from "@angular/router";
 })
 export class AppComponent {
   constructor() {
-    addIcons({home, cart, bookOutline});
+    addIcons({home, scan, bookOutline});
   }
 }
